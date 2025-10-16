@@ -119,7 +119,10 @@ const ProjectDetails: React.FC = () => {
     return new Intl.DateTimeFormat('es-ES', {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
     }).format(new Date(date));
   };
 
@@ -331,15 +334,15 @@ const ProjectDetails: React.FC = () => {
                 <div className="space-y-4">
                   <div>
                     <label className="text-sm font-medium text-gray-500">{t('project.deadline.offers')}</label>
-                    <p className="text-gray-900">{project.offersLimit}</p>
+                    <p className="text-gray-900">{formatDate(project.offersLimit)}</p>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-500">{t('project.deadline.ask')}</label>
-                    <p className="text-gray-900">{project.asksLimit}</p>
+                    <p className="text-gray-900">{formatDate(project.asksLimit)}</p>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-500">{t('project.deadline.response')}</label>
-                    <p className="text-gray-900">{project.responseLimit}</p>
+                    <p className="text-gray-900">{formatDate(project.responseLimit)}</p>
                   </div>
                 </div>
               </div>
@@ -365,7 +368,7 @@ const ProjectDetails: React.FC = () => {
                   className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-cyan-600 transition-all cursor-pointer flex items-center space-x-2"
                 >
                   <Upload className="h-4 w-4" />
-                  <span>{t('project.table.upload')}</span>
+                  <span>{t('project.files.upload')}</span>
                 </label>
                 {isUploading && <Loader2 className="h-5 w-5 animate-spin text-blue-600" />}
               </div>
@@ -454,10 +457,10 @@ const ProjectDetails: React.FC = () => {
                       onChange={(e) => setNewQuestion(prev => ({ ...prev, questionType: e.target.value }))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      <option value="Technical">{t('project.qa.technical')}</option>
-                      <option value="Procurement">{t('project.qa.procurement')}</option>
-                      <option value="Schedule">{t('project.qa.schedule')}</option>
                       <option value="General">{t('project.qa.general')}</option>
+                      <option value="Technical">{t('project.qa.technical')}</option>
+                      <option value="Managment">{t('project.qa.procurement')}</option>
+                      <option value="Declaim">{t('project.qa.schedule')}</option>
                     </select>
                   </div>
                 </div>

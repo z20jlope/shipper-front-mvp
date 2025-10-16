@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Building2, Phone, Mail, MessageSquare, Award, Users, SquareGantt, Shovel, PencilRuler, AppWindow, FolderKanban, BadgeDollarSign, Cog } from 'lucide-react';
+import { Building2, Phone, Mail, MessageSquare, Users, SquareGantt, Shovel, PencilRuler, AppWindow, FolderKanban, BadgeDollarSign, Cog } from 'lucide-react';
 import LoginModal from '../components/LoginModal';
 import PreviewModal from '../components/previewModal';
 import LanguageSelector from '../components/LanguageSelector';
 import { useLanguage } from '../contexts/LanguageContext';
-import logo from '../icons/logo.png';
+import logo from '../assets/icons/logo.png';
+import aboutBg from '../assets/images/about_bg.jpeg';
+
 
 const LandingPage: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -37,8 +39,7 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Building2 className="h-8 w-8 text-blue-600" />
-              <img src={logo} alt="NLH Logo" className="h-8 w-8 ml-2" />
+              <img src={logo} alt="NLH Logo" className="h-12 w-12 ml-2" />
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
@@ -74,12 +75,12 @@ const LandingPage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-gray-900/80"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="relative max-w-10xl mx-auto px-8 sm:px-6 lg:px-10 pt-20">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               {t('landing.hero.title')}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-100 mb-6 max-w-4xl mx-auto">
               {t('landing.hero.subtitle')}
             </p>
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
@@ -178,23 +179,18 @@ const LandingPage: React.FC = () => {
                 {t('landing.about.title')}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                With over 15 years of experience in the construction industry, we provide cutting-edge 
-                project management solutions that streamline workflows and enhance collaboration.
+                {t('landing.about.description')}
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex items-center space-x-3">
-                  <Award className="h-6 w-6 text-blue-600" />
-                  <span className="text-gray-700">Award Winning</span>
-                </div>
-                <div className="flex items-center space-x-3">
                   <Users className="h-6 w-6 text-blue-600" />
-                  <span className="text-gray-700">Expert Team</span>
+                  <span className="text-gray-700">{t('landing.about.team')}</span>
                 </div>
               </div>
             </div>
             <div>
               <img
-                src="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=600"
+                src={aboutBg}
                 alt="Construction team"
                 className="rounded-2xl shadow-xl"
               />
@@ -218,7 +214,21 @@ const LandingPage: React.FC = () => {
               <form onSubmit={handleContactSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    Subject
+                    {t('landing.contact.name')}
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    value={contactForm.subject}
+                    onChange={(e) => setContactForm(prev => ({ ...prev, subject: e.target.value }))}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('landing.contact.email')}
                   </label>
                   <input
                     type="text"
@@ -232,7 +242,7 @@ const LandingPage: React.FC = () => {
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
+                    {t('landing.contact.message')}
                   </label>
                   <textarea
                     id="message"
@@ -248,7 +258,7 @@ const LandingPage: React.FC = () => {
                   type="submit"
                   className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-cyan-600 transition-all"
                 >
-                  Send Message
+                  {t('landing.contact.submit')}
                 </button>
               </form>
             </div>
@@ -259,8 +269,8 @@ const LandingPage: React.FC = () => {
                   <Phone className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
+                  <h3 className="text-lg font-semibold text-gray-900">{t('landing.contact.phone')}</h3>
+                  <p className="text-gray-600">{t('landing.contact.phone.number')}</p>
                 </div>
               </div>
               
@@ -269,8 +279,8 @@ const LandingPage: React.FC = () => {
                   <Mail className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">contact@constructpro.com</p>
+                  <h3 className="text-lg font-semibold text-gray-900">{t('landing.contact.email')}</h3>
+                  <p className="text-gray-600">{t('landing.contact.email.address')}</p>
                 </div>
               </div>
               
@@ -279,8 +289,8 @@ const LandingPage: React.FC = () => {
                   <MessageSquare className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">WhatsApp</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
+                  <h3 className="text-lg font-semibold text-gray-900">{t('landing.contact.whatsapp')}</h3>
+                  <p className="text-gray-600">{t('landing.contact.whatsapp.number')}</p>
                 </div>
               </div>
             </div>

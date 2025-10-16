@@ -19,9 +19,9 @@ const Dashboard: React.FC = () => {
   };
 
   const menuItems = [
-    { id: 'projects', label: t('dashboard.projects'), icon: FolderOpen, visible: true },
+    { id: 'projects', label: t('dashboard.projects.title'), icon: FolderOpen, visible: true },
     { id: 'profile', label: t('dashboard.profile'), icon: User, visible: true },
-    { id: 'license', label: t('dashboard.license'), icon: CreditCard, visible: true },
+    { id: 'license', label: t('dashboard.license'), icon: CreditCard, visible: false },
     { id: 'settings', label: t('dashboard.settings'), icon: SettingsIcon, visible: user?.role === 'administrator' },
   ];
 
