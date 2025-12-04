@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Instagram, Facebook, Phone, Mail, MessageSquare, SquareGantt, Shovel, PencilRuler, AppWindow, FolderKanban, BadgeDollarSign } from 'lucide-react';
+import { Phone, Mail, SquareGantt, Shovel, PencilRuler, AppWindow, FolderKanban, BadgeDollarSign } from 'lucide-react';
 import LoginModal from '../components/LoginModal';
 import PreviewModal from '../components/previewModal';
 import LanguageSelector from '../components/LanguageSelector';
 import { useLanguage } from '../contexts/LanguageContext';
 import logo from '../assets/icons/logo.png';
+import facebook from '../assets/icons/facebook.png';
+import instagram from '../assets/icons/instagram.png';
+import whatsapp from '../assets/icons/whatsapp.png';
 import aboutBg from '../assets/images/about_bg.jpeg';
 import mauricio from '../assets/images/mauricio_munoz.png';
 import leonardo from '../assets/images/Leonardo_Bertiola.png';
@@ -30,8 +33,6 @@ const LandingPage: React.FC = () => {
   const [contactForm, setContactForm] = useState({ subject: '', message: '' });
   const { t } = useLanguage();
 
-  const imageSrcAdv = 'https://images.pexels.com/photos/374710/pexels-photo-374710.jpeg?auto=compress&cs=tinysrgb&w=600';
-  
 
   const IMAGES = [
   'https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=1920',
@@ -351,14 +352,23 @@ const LandingPage: React.FC = () => {
               </div>
 
               <div className="flex items-center pt-64 space-x-4">
-                <div className="bg-gradient-to-r from-green-600 to-emerald-500 w-16 h-16 rounded-full flex items-center justify-center">
-                  <MessageSquare className="h-6 w-6 text-white" />
+                <div className="rounded-full flex items-center justify-center">
+                  <a href="https://wa.me/+56980805075?text=Mensaje deseado para iniciar conversación" target="_blank" rel="noopener noreferrer"><img
+                      src={whatsapp}
+                      alt="WhatsApp"
+                      className="h-16 w-16" /></a>
                 </div>
-                <div className="bg-gradient-to-r from-violet-600 to-red-500 w-16 h-16 rounded-xl flex items-center justify-center">
-                  <Instagram className="h-6 w-6 text-white" />
+                <div className="rounded-xl flex items-center justify-center">
+                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"> <img
+                      src={instagram}
+                      alt="Instagram"
+                      className="h-16 w-16" /></a>
                 </div>
-                <div className="bg-gradient-to-r from-blue-600 to-blue-500 w-16 h-16 rounded-xl flex items-center justify-center">
-                  <Facebook className="h-6 w-6 text-white" />
+                <div className="rounded-xl flex items-center justify-center">
+                   <a href="https://facebook.com/nlhchile" target="_blank" rel="noopener noreferrer">  <img
+                      src={facebook}
+                      alt="Facebook"
+                      className="h-16 w-16" /></a>
                 </div>
               </div>
             </div>
