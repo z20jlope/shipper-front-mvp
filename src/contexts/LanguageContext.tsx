@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-type Language = 'en' | 'es' | 'pt';
+type Language = 'en' | 'es' ;
 
 interface LanguageContextType {
   language: Language;
@@ -17,9 +17,9 @@ const translations = {
     'nav.login': 'Login',
     
     // Landing Page
-    'landing.hero.title': 'WMI - We Make it Happen',
-    'landing.hero.subtitle': 'Project Advisory and Management - New Construction - Remodeling - Tenant Improvements',
-    'landing.hero.subtitle2': 'Online Platform - Tenders - Budget - Project Control',
+    'landing.hero.title': 'NLH - Nosotros Lo Hacemos',
+    'landing.hero.subtitle': 'Project Advisory and Management - Project Development - Construction, Remodeling, and Tenant Improvements',
+    'landing.hero.subtitle2': 'Online Platform - Tender and Budget Management - Project Control',
     'landing.services.title': 'Our Services',
     
     // Landing Page Contact Section
@@ -42,18 +42,16 @@ const translations = {
     // Landing Page Services Section
     'landing.services.subtitle1': 'Project Advisory and Management',
     'landing.services.description1': 'Provides expert guidance and oversight throughout the entire project lifecycle, from initial concept to completion.',
-    'landing.services.subtitle2': 'New Construction',
+    'landing.services.subtitle2': 'Project Development, Architecture, Engineering, and Specialties',
     'landing.services.description2': 'This includes everything from initial planing and site preparation to the final touches and projects handover.',
-    'landing.services.subtitle3': 'Remodeling',
+    'landing.services.subtitle3': 'Construction, Remodeling, and Tenant Improvements',
     'landing.services.description3': 'Transform existing spaces to meet new needs, improve functionality, or update aesthetics.',
     'landing.services.subtitle4': 'Online Platform',
     'landing.services.description4': 'A centralized, cloud-based solution that digitizes and streamlines a company\'s entire project workflow.',
-    'landing.services.subtitle5': 'Tender Management',
+    'landing.services.subtitle5': 'Tender and Budget Management',
     'landing.services.description5': 'Comprehensive management of the tendering process, from preparing and issuing tender documents to evaluating bids and awarding contracts.',
-    'landing.services.subtitle6': 'Budget',
-    'landing.services.description6': 'Provide a detailed financial roadmap for your project, from initial planning to final completion.',
-    'landing.services.subtitle7': 'Project Control',
-    'landing.services.description7': 'A systematic approach to managing and monitoring a project\'s performance to ensure it stays on budget and schedule.',
+    'landing.services.subtitle6': 'Project Control',
+    'landing.services.description6': 'A systematics approach to managing and monitoring a project\'s performance to ensure it stays on budget and schedule.',
 
     
     // Login
@@ -310,8 +308,8 @@ const translations = {
     
     // Landing Page
     'landing.hero.title': 'NLH - Nosotros Lo Hacemos',
-    'landing.hero.subtitle': 'Asesorias y Gestión de Proyectos - Construcción - Remodelación - Habilitación',
-    'landing.hero.subtitle2': 'Plataforma Online - Licitaciones - Presupuesto - Control de Obras',
+    'landing.hero.subtitle': 'Asesorias y Gestión de Proyectos - Desarrollo de Proyectos - Construcción, Remodelación y Habilitaciones',
+    'landing.hero.subtitle2': 'Plataforma Online - Gestión de Licitaciones y Presupuestos - Control de Obras',
     'landing.services.title': 'Nuestros Servicios',
     
     // Landing Page Contact Section
@@ -334,18 +332,16 @@ const translations = {
     // Lading Page Services Section
     'landing.services.subtitle1': 'Asesoría y Gestión de Proyectos',
     'landing.services.description1': 'Proporciona orientación experta y supervisión durante todo el ciclo de vida del proyecto, desde el concepto inicial hasta la finalización.',
-    'landing.services.subtitle2': 'Construcción Nueva',
+    'landing.services.subtitle2': 'Desarrollo de Proyectos, Arquitectura, Ingeniería y Especialidades',
     'landing.services.description2': 'Esto incluye desde la planificación inicial y la preparación del sitio hasta los toques finales y la entrega del proyecto.',
-    'landing.services.subtitle3': 'Remodelación',
+    'landing.services.subtitle3': 'Construcción, Remodelación y Habilitación',
     'landing.services.description3': 'Transforma espacios existentes para satisfacer nuevas necesidades, mejorar la funcionalidad o actualizar la estética.',
     'landing.services.subtitle4': 'Plataforma Online',
     'landing.services.description4': 'Una solución centralizada basada en la nube que digitaliza y agiliza todo el flujo de trabajo de un proyecto de una empresa.',
-    'landing.services.subtitle5': 'Gestión de Licitaciones',
+    'landing.services.subtitle5': 'Gestión de Licitaciones y Presupuestos',
     'landing.services.description5': 'Gestión integral del proceso de licitación, desde la preparación y emisión de los documentos de licitación hasta la evaluación de las ofertas y la adjudicación de contratos.',
-    'landing.services.subtitle6': 'Presupuesto',
-    'landing.services.description6': 'Proporciona una hoja de ruta financiera detallada para su proyecto, desde la planificación inicial hasta la finalización.',
-    'landing.services.subtitle7': 'Control de Proyectos',
-    'landing.services.description7': 'Un enfoque sistemático para gestionar y monitorear el rendimiento de un proyecto para garantizar que se mantenga dentro del presupuesto y el cronograma.',
+    'landing.services.subtitle6': 'Control de Obras',
+    'landing.services.description6': 'Un enfoque sistemático para gestionar y monitorear el rendimiento de un proyecto para garantizar que se mantenga dentro del presupuesto y el cronograma.',
     
     // Login
     'login.title': 'Iniciar Sesión en tu Cuenta',
