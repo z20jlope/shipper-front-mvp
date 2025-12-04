@@ -392,7 +392,7 @@ const LandingPage: React.FC = () => {
       </footer>
 
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
-      <PreviewModal isOpen={isAdvModalOpen} title={t('landing.services.subtitle1')} imageSrc={management} textDescription={t('landing.services.description1')} onClose={() => setIsAdvModalOpen(false)} />
+      <PreviewModal isOpen={isAdvModalOpen} title={t('landing.services.subtitle1')} imageSrc={management} textDescription={t('landing.services.description1ext')} onClose={() => setIsAdvModalOpen(false)} />
       <PreviewModal isOpen={isNewModalOpen} title={t('landing.services.subtitle2')} imageSrc={development} textDescription={t('landing.services.description2')} onClose={() => setIsNewModalOpen(false)} />
       <PreviewModal isOpen={isRemodelingModalOpen} title={t('landing.services.subtitle3')} imageSrc={construction} textDescription={t('landing.services.description3')} onClose={() => setIsRemodelingModalOpen(false)} />
       <PreviewModal isOpen={isOnlineModalOpen} title={t('landing.services.subtitle4')} imageSrc={onlinePlatform} textDescription={t('landing.services.description4')} onClose={() => setIsOnlineModalOpen(false)} />

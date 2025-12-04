@@ -332,6 +332,21 @@ const translations = {
     // Lading Page Services Section
     'landing.services.subtitle1': 'Asesoría y Gestión de Proyectos',
     'landing.services.description1': 'Proporciona orientación experta y supervisión durante todo el ciclo de vida del proyecto, desde el concepto inicial hasta la finalización.',
+    'landing.services.description1ext': `Ofrecemos un servicio integral de asesoría y gestión diseñado para lograr optimizar desde la planificación inicial hasta
+la entrega final de un proyecto, poniendo enfasis en puntos relevantes necesarios para cumplir objetivos tales como:
+Supervisión y control: Monitoreamos de cerca la ejecución del proyecto, asegurando que se cumplan
+los estándares de calidad y los plazos establecidos.
+Coordinación de equipos: Actuamos como un puente de comunicación entre todas las partes involucradas
+(proveedores, contratistas, etc.) y así generar una colaboración fluida.
+Optimización de recursos: Buscamos la manera más eficiente de utilizar tu presupuesto con los distintos profesionales
+y equipos que formaran parte del proyecto.
+Reportes y comunicacion: Te mantenemos informado con informes claros y periódicos sobre el avance
+y los indicadores claves del proyecto.
+Control total: Te proporcionamos la visibilidad y el control que necesitas sobre el progreso, los recursos y los riesgos de tu proyecto.
+La gestión exitosa de un proyecto requiere más que solo una buena idea.
+Requiere una planificación meticulosa, una ejecución rigurosa y un control constante.
+Con nuestra experiencia, convertimos lo que puede ser complejo para algunos,
+en un proceso claro y controlado para establecer bases sólidas desde el inicio.`,
     'landing.services.subtitle2': 'Desarrollo de Proyectos, Arquitectura, Ingeniería y Especialidades',
     'landing.services.description2': 'Esto incluye desde la planificación inicial y la preparación del sitio hasta los toques finales y la entrega del proyecto.',
     'landing.services.subtitle3': 'Construcción, Remodelación y Habilitación',

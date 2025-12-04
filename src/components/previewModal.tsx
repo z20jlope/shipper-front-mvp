@@ -38,7 +38,7 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ isOpen, title, imageSrc, te
               className="w-full h-48 object-cover rounded-lg mb-2"
             />
           </div>
-          <div>
+          <div className="overscroll-container max-h-48 overflow-y-auto">
             <p>{textDescription}</p>
           </div>
         </div>
