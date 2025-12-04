@@ -5,7 +5,7 @@ interface BackgroundCarouselProps {
   interval?: number;
 }
 
-export function BackgroundCarousel({ images, interval = 5000 }: BackgroundCarouselProps) {
+export function BackgroundCarousel({ images, interval = 3000 }: BackgroundCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {

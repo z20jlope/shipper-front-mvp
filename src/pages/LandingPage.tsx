@@ -35,11 +35,12 @@ const LandingPage: React.FC = () => {
 
 
   const IMAGES = [
-  'https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1367192/pexels-photo-1367192.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/1545387/pexels-photo-1545387.jpeg?auto=compress&cs=tinysrgb&w=1920',
-  'https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  management,
+  development,
+  construction,
+  onlinePlatform,
+  badget,
+  control,
 ];
   
  const [currentSlide, setCurrentSlide] = useState(0);
@@ -102,7 +103,7 @@ const LandingPage: React.FC = () => {
       <section>
 
       <div>
-        <BackgroundCarousel images={IMAGES} interval={5000} />
+        <BackgroundCarousel images={IMAGES} interval={3000} />
       </div>
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4">
