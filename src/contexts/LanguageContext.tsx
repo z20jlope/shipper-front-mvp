@@ -30,7 +30,7 @@ const translations = {
     'landing.contact.submit': 'Send Message',
     'landing.contact.phone': 'Phone',
     'landing.contact.phone.number': '+56 9 8866-9996',
-    'landing.contact.email.address': 'contact@hlh.com',
+    'landing.contact.email.address': 'contact@nlh.com',
     'landing.contact.whatsapp': 'WhatsApp',
     'landing.contact.whatsapp.number': 'Number: +56 9 8866-9996',
     
@@ -320,9 +320,19 @@ const translations = {
     'landing.contact.submit': 'Enviar Mensaje',
     'landing.contact.phone': 'Teléfono',
     'landing.contact.phone.number': '+56 9 8866-9996',
-    'landing.contact.email.address': 'contacto@hlh.com',
+    'landing.contact.email.address': 'contacto@nlh.com',
     'landing.contact.whatsapp': 'WhatsApp',
     'landing.contact.whatsapp.number': 'Número: +56 9 8866-9996',
+    'landing.contact.whatsapp.link': 'https://wa.me/+56981805075?text=',
+    'landing.contact.whatsapp.text': `Hola 👋, somos NLH,¡Gracias por contactarnos!
+Estamos aquí para resolver tus dudas, brindarte información o atender tu
+solicitud lo antes posible.
+
+Por favor, indícanos:
+🔹 Tu nombre
+🔹 Lo que necesitas
+
+¡Estaremos encantados de ayudarte! 😊`,
     
     // Landing Page About Section
     'landing.about.title': 'Acerca de Nosotros',
@@ -348,15 +358,45 @@ Requiere una planificación meticulosa, una ejecución rigurosa y un control con
 Con nuestra experiencia, convertimos lo que puede ser complejo para algunos,
 en un proceso claro y controlado para establecer bases sólidas desde el inicio.`,
     'landing.services.subtitle2': 'Desarrollo de Proyectos, Arquitectura, Ingeniería y Especialidades',
-    'landing.services.description2': 'Esto incluye desde la planificación inicial y la preparación del sitio hasta los toques finales y la entrega del proyecto.',
+    'landing.services.description2': `Contamos con un equipo de profesionales con basta experiencia en arquitectura, ingeniería y especialidades, y así nos aseguramos de que su visión se haga realidad con eficiencia y calidad en cada proyecto.
+Combinamos la creatividad arquitectónica con la precisión de la ingeniería, para ofrecer soluciones integrales de diseño y construcción que no solo cumplen, sino que superan las expectativas.
+Con años de experiencia y un enfoque en la calidad y sostenibilidad, diseñamos y ejecutamos soluciones en conjunto con nuestros clientes para crear espacios que no solo son estéticamente atractivos, sino también funcionales.`,
     'landing.services.subtitle3': 'Construcción, Remodelación y Habilitación',
-    'landing.services.description3': 'Transforma espacios existentes para satisfacer nuevas necesidades, mejorar la funcionalidad o actualizar la estética.',
+    'landing.services.description3': `Te apoyamos en la concreción de tus proyectos, gestionando y desarrollando obras de construcción para los proyectos corporativos que tu empresa necesita, abordando Obras Civiles, Estructurales, Eléctricas, Climatización, Redes, Seguridad, Sanitario, Mobiliario, etc.
+Ejecutamos proyectos de Remodelación y Habilitación, tanto para locales comerciales como oficinas corporativas, considerando todas las especialidades que forman parte de un proyecto, de manera que puedan potenciar tu productividad, optimizar tu flujo de trabajo y proyectar una imagen profesional y moderna.` ,
     'landing.services.subtitle4': 'Plataforma Online',
-    'landing.services.description4': 'Una solución centralizada basada en la nube que digitaliza y agiliza todo el flujo de trabajo de un proyecto de una empresa.',
+    'landing.services.description4': `En NLH creamos nuestra plataforma On Line para que sea una herramienta practica, útil y sencilla, que facilite no solo procesos de licitación, sino que también permita llevar el control y seguimiento de tus proyectos a través de servicios de inspección técnica (ITO) y Control de Obras, manteniendo la información al alcance de todos, en cualquier lugar y en todo momento.
+Buscamos una real interacción
+con nuestros clientes, y la de ellos con sus
+proveedores,
+respondiendo y aclarando On Line en cualquier momento, para así garantizar que disminuyan los retrasos, se cumplan los plazos establecidos y todo con total transparencia.
+La Plataforma ofrece:
+- Subida y descarga de archivos.
+- Portal de Consultas y Respuestas.
+- Seguimiento en tiempo real: control, notificaciones, aclaraciones, etc.
+- Documentos e Historial del proyecto cuando sea requerido.
+- Soporte 24/7 mientras el proyecto este activo.
+- Reportes finales de cada proceso desarrollado.`,
     'landing.services.subtitle5': 'Gestión de Licitaciones y Presupuestos',
-    'landing.services.description5': 'Gestión integral del proceso de licitación, desde la preparación y emisión de los documentos de licitación hasta la evaluación de las ofertas y la adjudicación de contratos.',
+    'landing.services.description5': `En el dinámico entorno empresarial actual, la eficiencia y la reducción de costos son cruciales para mantener la competitividad. Es por eso que creamos una solución integral para digitalizar y optimizar sus procesos de adquisición y licitación. Esta herramienta de e-procurement le permite gestionar sus procesos de manera electrónica, segura y transparente, permitiendo:
+Ahorrar tiempo y recursos: Agilice la elaboración y gestión de sus procesos de licitación.
+Garantizar transparencia: Asegure un proceso justo y auditable con registro completo del historial de cada licitación.
+Ampliar su red de proveedores: Conecte con una comunidad más amplia de proveedores, fomentando la competitividad y obteniendo mejores condiciones de precio-calidad.
+Tomar decisiones informadas: Acceda a datos y métricas para evaluar propuestas y seleccionar la oferta más conveniente.`,
     'landing.services.subtitle6': 'Control de Obras',
-    'landing.services.description6': 'Un enfoque sistemático para gestionar y monitorear el rendimiento de un proyecto para garantizar que se mantenga dentro del presupuesto y el cronograma.',
+    'landing.services.description6': `Durante estos 15 años con experiencia en distintos proyectos de Construcción, hemos logrado ganar la confianza de nuestros clientes en servicios de Inspección Técnica y Control de Obras, ya que nuestra mirada imparcial, rigurosa y proactiva nos permite tomar decisiones informadas, minimizar riesgos, evitar
+sobrecostos, retrasos y vicios ocultos.
+Ofrecemos un servicio integral de control y supervisión de obras con apoyo permanente de nuestra
+Plataforma On Line, diseñado para brindarle transparencia, eficiencia y mejor visibilidad a cada proyecto.
+Realizamos entre otras actividades:|
+- Supervisión técnica continua en obra, con inspecciones programadas y no programadas.
+- Verificación del cumplimiento de planos, especificaciones técnicas y normativas vigentes
+- Control de avances físicos y cronogramas: seguimiento real vs. planificado
+- Gestión y evaluación de la calidad de materiales y mano de obra
+- Control de costos: detección temprana de desviaciones presupuestarias
+- Emisión de informes técnicos periódicos con hallazgos, recomendaciones y fotografías
+- Coordinación con contratistas, inspectores y autoridades competentes
+- Apoyo en la recepción final y levantamiento de observaciones`,
     
     // Login
     'login.title': 'Iniciar Sesión en tu Cuenta',

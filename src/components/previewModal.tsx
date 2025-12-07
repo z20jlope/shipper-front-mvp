@@ -1,6 +1,5 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 interface PreviewModalProps {
   isOpen: boolean;
@@ -11,13 +10,12 @@ interface PreviewModalProps {
 }
 
 const PreviewModal: React.FC<PreviewModalProps> = ({ isOpen, title, imageSrc, textDescription, onClose }) => {
-  const { t } = useLanguage();
  
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl p-8 w-full max-w-md relative animate-in zoom-in-95 duration-200">
+      <div className="bg-white rounded-2xl p-8 w-full max-w-[600px] relative animate-in zoom-in-95 duration-200">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -27,7 +25,7 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ isOpen, title, imageSrc, te
 
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"></div>
+          <div className="w-1/4 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"></div>
         </div>
 
         <div className="space-y-6">
@@ -38,7 +36,7 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ isOpen, title, imageSrc, te
               className="w-full h-48 object-cover rounded-lg mb-2"
             />
           </div>
-          <div className="overscroll-container max-h-48 overflow-y-auto">
+          <div className="text-justify overscroll-container max-h-48 overflow-y-auto">
             <p>{textDescription}</p>
           </div>
         </div>

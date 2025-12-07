@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Phone, Mail, SquareGantt, Shovel, PencilRuler, AppWindow, FolderKanban, BadgeDollarSign } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Phone, Mail, SquareGantt, Shovel, PencilRuler, AppWindow, FolderKanban, BadgeDollarSign, Info, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import LoginModal from '../components/LoginModal';
 import PreviewModal from '../components/previewModal';
 import LanguageSelector from '../components/LanguageSelector';
@@ -18,8 +18,18 @@ import construction from '../assets/images/construction.png';
 import onlinePlatform from '../assets/images/online.png';
 import badget from '../assets/images/presupuesto.png';
 import control from '../assets/images/control_obras.png';
-import { CarouselControls } from '../components/CarouselControls';
-import { BackgroundCarousel } from '../components/BackgroundCarousel';
+import carrusel1 from '../assets/images/carrusel1.jpg';
+import carrusel2 from '../assets/images/carrusel2.jpg';
+import carrusel3 from '../assets/images/carrusel3.jpg';
+import carrusel4 from '../assets/images/carrusel4.jpg';
+import carrusel5 from '../assets/images/carrusel5.jpg';
+import carrusel6 from '../assets/images/carrusel6.jpg';
+import carrusel7 from '../assets/images/carrusel7.jpg';
+import carrusel8 from '../assets/images/carrusel8.jpg';
+import carrusel9 from '../assets/images/carrusel9.jpg';
+import carrusel10 from '../assets/images/carrusel10.jpg';
+import carrusel11 from '../assets/images/carrusel11.jpg';
+import carrusel12 from '../assets/images/carrusel12.jpg';
 
 
 const LandingPage: React.FC = () => {
@@ -33,40 +43,60 @@ const LandingPage: React.FC = () => {
   const [contactForm, setContactForm] = useState({ subject: '', message: '' });
   const { t } = useLanguage();
 
-
-  const IMAGES = [
-  management,
-  development,
-  construction,
-  onlinePlatform,
-  badget,
-  control,
+  const carouselImages = [
+  carrusel1,
+  carrusel2,
+  carrusel3,
+  carrusel4,
+  carrusel5,
+  carrusel6,
+  carrusel7,
+  carrusel8,
+  carrusel9,
+  carrusel10,
+  carrusel11,
+  carrusel12,
 ];
   
- const [currentSlide, setCurrentSlide] = useState(0);
+const encodedMessage = encodeURIComponent(t('landing.contact.whatsapp.text'));
+const [currentIndex, setCurrentIndex] = useState(0);
+ const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const handlePrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
-  };
+const handleContactSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  // Handle contact form submission
+  console.log('Contact form submitted:', contactForm);
+  setContactForm({ subject: '', message: '' });
+  alert('Thank you for your message! We will get back to you soon.');
+};
 
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % IMAGES.length);
-  };
+useEffect(() => {
+  const delay = 5000;
+  const interval = setInterval(() => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
+    setTimeout(() => setIsTransitioning(false), 500);
+  }, delay);
 
-  const handleDotClick = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle contact form submission
-    console.log('Contact form submitted:', contactForm);
-    setContactForm({ subject: '', message: '' });
-    alert('Thank you for your message! We will get back to you soon.');
-  };
-
+  return () => clearInterval(interval);
+}, [carouselImages.length]);
+  
+    const handlePrevious = () => {
+      if (isTransitioning) return;
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => (prev === 0 ? carouselImages.length - 1 : prev - 1));
+      setTimeout(() => setIsTransitioning(false), 500);
+    };
+  
+    const handleNext = () => {
+      if (isTransitioning) return;
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
+      setTimeout(() => setIsTransitioning(false), 500);
+    };
   
 
+  
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -101,12 +131,22 @@ const LandingPage: React.FC = () => {
       
       {/* Hero Section */}
       <section>
-
-      <div>
-        <BackgroundCarousel images={IMAGES} interval={3000} />
-      </div>
-
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4">
+         {carouselImages.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            index === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={image}
+            alt={`Slide ${index + 1}`}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40" />
+        </div>
+      ))}
         <div className="relative max-w-10xl mx-auto px-8 sm:px-6 lg:px-10 pt-20">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -126,15 +166,37 @@ const LandingPage: React.FC = () => {
             </button>
           </div>
         </div>
+             <div className="absolute bottom-8 left-8 flex gap-3">
+        <button
+          onClick={handlePrevious}
+          disabled={isTransitioning}
+          className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-3 rounded-full transition-all disabled:opacity-50"
+        >
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={isTransitioning}
+          className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-3 rounded-full transition-all disabled:opacity-50"
+        >
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
       </div>
 
-      <CarouselControls
-        totalSlides={IMAGES.length}
-        currentSlide={currentSlide}
-        onPrevious={handlePrevious}
-        onNext={handleNext}
-        onDotClick={handleDotClick}
-      />
+      <div className="absolute bottom-8 right-8 flex gap-2">
+        {carouselImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`h-2 rounded-full transition-all ${
+              index === currentIndex
+                ? 'bg-white w-8'
+                : 'bg-white/50 w-2 hover:bg-white/75'
+            }`}
+          />
+        ))}
+      </div>
+      </div>
 
       </section>
 
@@ -148,55 +210,85 @@ const LandingPage: React.FC = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 hover:shadow-lg transition-all" onClick={() => setIsAdvModalOpen(true)}>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 hover:shadow-lg transition-all" >
               <div className="bg-gradient-to-r from-blue-600 to-cyan-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <SquareGantt className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">{t('landing.services.subtitle1')}</h3>
-              <p className="text-gray-600">{t('landing.services.description1')}</p>
+              <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" onClick={() => setIsAdvModalOpen(true)}>
+                <div className="flex items-center justify-center">
+                  Saber Más
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </button>
             </div>
 
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-lg transition-all" onClick={() => setIsNewModalOpen(true)}>
+            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-lg transition-all" >
               <div className="bg-gradient-to-r from-green-600 to-emerald-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shovel className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('landing.services.subtitle2')}</h3>
-              <p className="text-gray-600">{t('landing.services.description2')}</p>
-            </div>
-
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 hover:shadow-lg transition-all" onClick={() => setIsRemodelingModalOpen(true)}>
-              <div className="bg-gradient-to-r from-purple-600 to-indigo-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <PencilRuler className="h-8 w-8 text-white" />
               </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('landing.services.subtitle2')}</h3>
+              <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" onClick={() => setIsNewModalOpen(true)}>
+                <div className="flex items-center justify-center">
+                  Saber Más
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </button>
+            </div>
+
+            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 hover:shadow-lg transition-all" >
+              <div className="bg-gradient-to-r from-purple-600 to-indigo-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Shovel className="h-8 w-8 text-white" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">{t('landing.services.subtitle3')}</h3>
-              <p className="text-gray-600">{t('landing.services.description3')}</p>
+              <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" onClick={() => setIsRemodelingModalOpen(true)}>
+                <div className="flex items-center justify-center">
+                  Saber Más
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </button>
             </div>
           </div>
           <br />
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 hover:shadow-lg transition-all" onClick={() => setIsOnlineModalOpen(true)}>
+            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 hover:shadow-lg transition-all" >
               <div className="bg-gradient-to-r from-blue-600 to-cyan-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <AppWindow className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">{t('landing.services.subtitle4')}</h3>
-              <p className="text-gray-600">{t('landing.services.description4')}</p>
+              <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" onClick={() => setIsOnlineModalOpen(true)}>
+                <div className="flex items-center justify-center">
+            Saber Más
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </button>
             </div>
 
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-lg transition-all" onClick={() => setIsTenderModalOpen(true)}>
+            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-lg transition-all" >
               <div className="bg-gradient-to-r from-green-600 to-emerald-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <FolderKanban className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">{t('landing.services.subtitle5')}</h3>
-              <p className="text-gray-600">{t('landing.services.description5')}</p>
+              <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" onClick={() => setIsTenderModalOpen(true)}>
+                <div className="flex items-center justify-center">
+                 Saber Más
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </button>
             </div>
 
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 hover:shadow-lg transition-all" onClick={() => setIsControlModalOpen(true)}>
+            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 hover:shadow-lg transition-all" >
               <div className="bg-gradient-to-r from-purple-600 to-indigo-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <BadgeDollarSign className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">{t('landing.services.subtitle6')}</h3>
-              <p className="text-gray-600">{t('landing.services.description6')}</p>
+              <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" onClick={() => setIsControlModalOpen(true)}>
+                <div className="flex items-center justify-center">
+                 Saber Más
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </button>
             </div>
           </div>
           <br />
@@ -251,7 +343,7 @@ const LandingPage: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">{"Leonardo Bertiola"}</p>
-                    <p className="text-sm text-gray-500">{"nelson@nlh.cl"}</p>
+                    <p className="text-sm text-gray-500">{"leonardo@nlh.cl"}</p>
                   </div>
                 </div>
               </div>
@@ -352,24 +444,24 @@ const LandingPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center pt-64 space-x-4">
-                <div className="rounded-full flex items-center justify-center">
-                  <a href="https://wa.me/+56980805075?text=Mensaje deseado para iniciar conversación" target="_blank" rel="noopener noreferrer"><img
+              <div className="flex items-center pt-64 space-x-4 space-y-2">
+                <div className="rounded-full flex items-center justify-center" style={{ marginTop: '10px' }}>
+                  <a href={t('landing.contact.whatsapp.link')+encodedMessage} target="_blank" rel="noopener noreferrer"><img
                       src={whatsapp}
                       alt="WhatsApp"
-                      className="h-16 w-16" /></a>
+                      className="h-12 w-12" /></a>
                 </div>
                 <div className="rounded-xl flex items-center justify-center">
-                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"> <img
+                 <a href="https://www.instagram.com/nlhnosotroslohacemos/" target="_blank" rel="noopener noreferrer"> <img
                       src={instagram}
                       alt="Instagram"
-                      className="h-16 w-16" /></a>
+                      className="h-12 w-12" /></a>
                 </div>
                 <div className="rounded-xl flex items-center justify-center">
                    <a href="https://facebook.com/nlhchile" target="_blank" rel="noopener noreferrer">  <img
                       src={facebook}
                       alt="Facebook"
-                      className="h-16 w-16" /></a>
+                      className="h-12 w-12" /></a>
                 </div>
               </div>
             </div>
@@ -385,7 +477,7 @@ const LandingPage: React.FC = () => {
               <img src={logo} alt="NLH Logo" className="h-12 w-12 ml-2" />
             </div>
             <p className="text-gray-400">
-              © 2025 NLH (Nosotros lo hacemos). All rights reserved.
+              © 2025 NLH (Nosotros Lo Hacemos). All rights reserved.
             </p>
           </div>
         </div>
