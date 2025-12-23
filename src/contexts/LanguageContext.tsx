@@ -143,8 +143,16 @@ const translations = {
     'project.officer.specialist.add': 'Add Specialist',
     'project.officer.contact': 'Contact',
 
+    // Project Customer Linked Section
+    'project.customer.title': 'Customers Associated',
+    'project.customer.search.title': 'Search Registered Customers',
+    'project.customer.search.filter': 'Find customer by name...',
+    'project.customer.linked.title': 'Linked To Project',
+    'project.customer.no.linked': 'No Customers linked yet.',
+
     // Project Addionally Section
     'project.addition.title': 'Additional Information',
+    'project.addition.title.placeholder': 'Important information to take in consideration.',
     'project.addition.user': 'User',
     'project.addition.binding': 'Binding',
 
@@ -442,8 +450,16 @@ Por favor, indícanos:
     'project.officer.specialist.add': '+',
     'project.officer.contact': 'Contacto',
 
+    // Project Customer Linked Section
+    'project.customer.title': 'Clientes Asociados',
+    'project.customer.search.title': 'Buscar Clientes Registrados',
+    'project.customer.search.filter': 'Filtar por nombre...',
+    'project.customer.linked.title': 'Clientes Vinculados',
+    'project.customer.no.linked': 'No hay clientes associados al proyecto.',
+
     // Project Addionally Section
     'project.addition.title': 'Información Adicional',
+    'project.addition.title.placeholder': 'Información importante a tener en cuenta',
     'project.addition.user': 'Cliente',
     'project.addition.binding': 'Licitación',
 

@@ -6,6 +6,8 @@ import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import ProjectDetails from './pages/ProjectDetails';
 import ProtectedRoute from './components/ProtectedRoute';
+import PreviewPage from './pages/PreviewPage';
+import ProjectLandingPage from './pages/ProjectLandingPage';
 
 function App() {
   return (
@@ -28,6 +30,22 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <ProjectDetails />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/preview" 
+                element={
+                  <ProtectedRoute>
+                    <PreviewPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/team" 
+                element={
+                  <ProtectedRoute>
+                    <ProjectLandingPage />
                   </ProtectedRoute>
                 } 
               />
