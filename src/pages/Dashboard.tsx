@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { User, LogOut, FolderOpen, CreditCard, Settings as SettingsIcon, Building2 } from 'lucide-react';
+import { User, LogOut, FolderOpen, CreditCard, Settings as SettingsIcon} from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import logo from '../assets/icons/logo.png';
 import ProjectsView from '../components/ProjectsView';
 import ProfileView from '../components/ProfileView';
 import LicenseView from '../components/LicenseView';
@@ -46,8 +47,8 @@ const Dashboard: React.FC = () => {
       <div className="w-64 bg-white shadow-lg">
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center">
-            <Building2 className="h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-xl font-bold text-gray-900">NLH</span>
+            <img src={logo} alt="NLH Logo" className="h-14 w-14 ml-2 rounded-lg border-2 border-blue-400" />
+            <span className="ml-3 text-2xl font-bold text-gray-900">Nosotros Lo Hacemos</span>            
           </div>
         </div>
         

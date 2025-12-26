@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { X, Save, Loader2, Upload, Trash2, FileText, Plus, Search, UserPlus, UserMinus, ChevronDown, ChevronUp, CheckCircle2, Notebook, ReceiptText, HandHelping } from "lucide-react";
+import { X, Save, Loader2, Upload, Trash2, FileText, Plus, Search, UserPlus, UserMinus, ChevronDown, ChevronUp, CheckCircle2, Notebook, ReceiptText, HandHelping, Eye, Download } from "lucide-react";
 import { Project, ProjectFile } from "../types";
 import { projectService } from "../services/projectService";
 import { useAuth } from "../contexts/AuthContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import FileViewer from "./FileViewer";
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -19,11 +20,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
   onSave,
 }) => {
   const { user } = useAuth();
+  console.log("Current User in ProjectModal:", user?.role);
   const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [activeTab, setActiveTab] = useState<"general" | "deadline" | "files" | "qa" | "downloads">("general");
   const [uploadedFiles, setUploadedFiles] = useState<ProjectFile[]>([]);
+  const [selectedFile, setSelectedFile] = useState<ProjectFile | null>(null);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -113,6 +116,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
       setUploadedFiles([]);
     }
   }, [project, user]);
+  const isAdministrator = user?.role === "administrator";
 
   const loadProjectFiles = async (projectId: string) => {
     try {
@@ -185,6 +189,28 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
       alert("Error uploading files. Please try again.");
     } finally {
       setIsUploading(false);
+    }
+  };
+
+  const handleDownload = async (file: FileRecord) => {
+    try {
+      const { data, error } = await supabase.storage
+        .from('files')
+        .download(file.file_path);
+
+      if (error) throw error;
+
+      const url = URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = file.name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      alert('Failed to download file');
     }
   };
 
@@ -385,8 +411,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               <button
                 onClick={() => setActiveTab("general")}
                 className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === "general"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:text-gray-700"
                   }`}
               >
                 {t("tab.general")}
@@ -394,8 +420,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               <button
                 onClick={() => setActiveTab("deadline")}
                 className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === "deadline"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:text-gray-700"
                   }`}
               >
                 {t("tab.deadline")}
@@ -403,8 +429,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               <button
                 onClick={() => setActiveTab("files")}
                 className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === "files"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:text-gray-700"
                   }`}
               >
                 {t("tab.files")}
@@ -879,7 +905,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                           ) : (
                             <div className="border-2 border-dashed border-slate-100 rounded-xl p-8 text-center">
                               <p className="text-sm text-slate-400 italic">
-                               {t("project.customer.no.linked")}
+                                {t("project.customer.no.linked")}
                               </p>
                             </div>
                           )}
@@ -1156,12 +1182,28 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                               <button
-                                onClick={() => handleDeleteFile(file.id)}
-                                className="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 rounded transition-colors"
-                                title="Delete file"
+                                onClick={() => setSelectedFile(file)}
+                                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                                title="View"
                               >
-                                <Trash2 className="h-4 w-4" />
+                                <Eye className="w-5 h-5" />
                               </button>
+                              <button
+                                onClick={() => handleDownload(file)}
+                                className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition"
+                                title="Download"
+                              >
+                                <Download className="w-5 h-5" />
+                              </button>
+                              {isAdministrator && (
+                                <button
+                                  onClick={() => handleDeleteFile(file.id)}
+                                  className="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 rounded transition-colors"
+                                  title="Delete file"
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </button>
+                              )}
                             </td>
                           </tr>
                         ))}
@@ -1169,6 +1211,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     </table>
                   </div>
                 </div>
+              )}
+
+              {selectedFile && (
+                <FileViewer
+                  file={selectedFile}
+                  onClose={() => setSelectedFile(null)}
+                />
               )}
 
               {uploadedFiles.length > 0 && (

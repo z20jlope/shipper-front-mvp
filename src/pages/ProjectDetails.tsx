@@ -115,6 +115,14 @@ const ProjectDetails: React.FC = () => {
     return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
   };
 
+  const formatDateGeneral = (date: Date) => {
+    return new Intl.DateTimeFormat('es-ES', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    }).format(new Date(date));
+  };
+
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat('es-ES', {
       year: 'numeric',
@@ -183,7 +191,7 @@ const ProjectDetails: React.FC = () => {
                   </div>
                   <div className="flex items-center space-x-1">
                     <Calendar className="h-4 w-4" />
-                    <span>{formatDate(project.startDate)}</span>
+                    <span>{formatDateGeneral(project.startDate)}</span>
                   </div>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                     project.status === 'active' ? 'bg-green-100 text-green-800' :
@@ -192,6 +200,19 @@ const ProjectDetails: React.FC = () => {
                   }`}>
                     {project.status}
                   </span>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center space-x-3">
+                <img
+                  src={user?.avatar || `https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150`}
+                  alt={user?.name}
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-medium text-gray-900">{user?.name}</p>
+                  <p className="text-sm text-gray-500 capitalize">{user?.role}</p>
                 </div>
               </div>
             </div>
@@ -229,36 +250,64 @@ const ProjectDetails: React.FC = () => {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('project.detail.view')}</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-500">{t('project.general.description')}</label>
-                    <p className="text-gray-900">{project.description}</p>
+                    {project.description && (
+                      <>
+                        <label className="text-sm font-medium text-gray-500">{t('project.general.description')}</label>
+                        <p className="text-gray-900">{project.description}</p>
+                      </>
+                    )}
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-500">{t('project.detail.type')}</label>
-                      <p className="text-gray-900">{project.type}</p>
+                      {project.type && (
+                        <>
+                          <label className="text-sm font-medium text-gray-500">{t('project.detail.type')}</label>
+                          <p className="text-gray-900">{project.type}</p>
+                        </>
+                      )}
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-500">{t('project.detail.quantity')}</label>
-                      <p className="text-gray-900">{project.quantity}</p>
+                      {project.quantity !== null && (
+                        <>
+                          <label className="text-sm font-medium text-gray-500">{t('project.detail.quantity')}</label>
+                          <p className="text-gray-900">{project.quantity}</p>
+                        </>
+                      )}
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-500">{t('project.detail.surface')}</label>
-                      <p className="text-gray-900">{project.surface.toLocaleString()} m²</p>
+                      {project.surface !== null && (
+                        <>
+                          <label className="text-sm font-medium text-gray-500">{t('project.detail.surface')}</label>
+                          <p className="text-gray-900">{project.surface.toLocaleString()} m²</p>
+                        </>
+                      )}
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-500">{t('project.detail.floor')}</label>
-                      <p className="text-gray-900">{project.floor}</p>
+                      {project.floor && (
+                        <>
+                          <label className="text-sm font-medium text-gray-500">{t('project.detail.floor')}</label>
+                          <p className="text-gray-900">{project.floor}</p>
+                        </>
+                      )}  
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">{t('project.detail.materiality')}</label>
-                    <p className="text-gray-900">{project.materiality}</p>
+                    {project.materiality && (
+                      <>
+                        <label className="text-sm font-medium text-gray-500">{t('project.detail.materiality')}</label>
+                        <p className="text-gray-900">{project.materiality}</p>
+                      </>
+                    )}
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">{t('project.detail.enclosure')}</label>
-                    <p className="text-gray-900">{project.enclosure}</p>
+                    {project.enclosure && (
+                      <>
+                        <label className="text-sm font-medium text-gray-500">{t('project.detail.enclosure')}</label>
+                        <p className="text-gray-900">{project.enclosure}</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -268,33 +317,53 @@ const ProjectDetails: React.FC = () => {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-500">{t('project.officer.principal1')}</label>
-                      <p className="text-gray-900">{project.principal1}</p>
+                      {project.principal1 && (
+                        <>
+                          <label className="text-sm font-medium text-gray-500">{t('project.officer.principal1')}</label>
+                          <p className="text-gray-900">{project.principal1}</p>
+                        </>
+                      )}
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-500">{t('project.officer.principal2')}</label>
-                      <p className="text-gray-900">{project.principal2}</p>
+                      {project.principal2 && (
+                        <>
+                          <label className="text-sm font-medium text-gray-500">{t('project.officer.principal2')}</label>
+                          <p className="text-gray-900">{project.principal2}</p>
+                        </>
+                      )}
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">{t('project.officer.professional')}</label>
-                    <ul className="text-gray-900 list-disc list-inside">
-                      {project.professionals.map((prof, index) => (
-                        <li key={index}>{prof}</li>
-                      ))}
-                    </ul>
+                    {project?.professionals.length > 0 && (
+                      <>
+                        <label className="text-sm font-medium text-gray-500">{t('project.officer.professional')}</label>
+                        <ul className="text-gray-900 list-disc list-inside">
+                          {project.professionals.map((prof, index) => (
+                            <li key={index}>{prof}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">{t('project.officer.specialist')}</label>
-                    <ul className="text-gray-900 list-disc list-inside">
-                      {project.specialists.map((spec, index) => (
-                        <li key={index}>{spec}</li>
-                      ))}
-                    </ul>
+                    {project?.specialists.length > 0 && (
+                      <>
+                        <label className="text-sm font-medium text-gray-500">{t('project.officer.specialist')}</label>
+                        <ul className="text-gray-900 list-disc list-inside">
+                          {project.specialists.map((spec, index) => (
+                            <li key={index}>{spec}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">{t('project.officer.contact')}</label>
-                    <p className="text-gray-900">{project.contact}</p>
+                    {project.contact && (
+                      <>
+                        <label className="text-sm font-medium text-gray-500">{t('project.officer.contact')}</label>
+                        <p className="text-gray-900">{project.contact}</p>
+                      </>
+                    )}
                   </div>
                   {project.additionalInfo && (
                     <div>

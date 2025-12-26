@@ -7,6 +7,7 @@ import { mockUsers } from '../data/mockData';
 
 const SettingsView: React.FC = () => {
   const { user } = useAuth();
+  console.log('Current User in SettingsView:', user);
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'users' | 'templates' | 'backup'>('users');
   const [users, setUsers] = useState<User[]>(mockUsers);
@@ -189,7 +190,7 @@ const SettingsView: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t('project.setting.user.name')}</label>
                 <input
                   type="text"
-                  value={newUser.name}
+                  value={editingUser ? editingUser.name : newUser.name}
                   onChange={(e) => setNewUser(prev => ({ ...prev, name: e.target.value }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -199,7 +200,7 @@ const SettingsView: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t('project.setting.user.email')}</label>
                 <input
                   type="email"
-                  value={newUser.email}
+                  value={editingUser ? editingUser.email : newUser.email}
                   onChange={(e) => setNewUser(prev => ({ ...prev, email: e.target.value }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -209,7 +210,7 @@ const SettingsView: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t('project.setting.user.username')}</label>
                 <input
                   type="text"
-                  value={newUser.username}
+                  value={editingUser ? editingUser.username : newUser.username}
                   onChange={(e) => setNewUser(prev => ({ ...prev, username: e.target.value }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -219,7 +220,7 @@ const SettingsView: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t('project.setting.user.password')}</label>
                 <input
                   type="password"
-                  value={newUser.password}
+                  value={editingUser ? editingUser.password : newUser.password}
                   onChange={(e) => setNewUser(prev => ({ ...prev, password: e.target.value }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -228,7 +229,7 @@ const SettingsView: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t('project.setting.user.role')}</label>
                 <select
-                  value={newUser.role}
+                  value={editingUser ? editingUser.role : newUser.role}
                   onChange={(e) => setNewUser(prev => ({ ...prev, role: e.target.value as UserRole }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
