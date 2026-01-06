@@ -44,8 +44,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
     contact: "",
     additionalInfo: "",
     publicationDate: "",
+    publicationTime: "",
     startDate: "",
+    startTime: "",
     finishDate: "",
+    finishTime: "",
     offersLimit: 10,
     asksLimit: 50,
     responseLimit: 30,
@@ -104,8 +107,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
         contact: "",
         additionalInfo: "",
         publicationDate: "",
+        publicationTime: "",
         startDate: "",
+        startTime: "",
         finishDate: "",
+        finishTime: "",
         offersLimit: 10,
         asksLimit: 50,
         responseLimit: 30,
@@ -965,52 +971,93 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       {t("project.deadline.publication")}
                     </label>
-                    <input
-                      type="date"
-                      value={formData.publicationDate}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          publicationDate: e.target.value,
-                        }))
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      required
-                    />
+                    <div className="flex space-x-2">
+                      <input
+                        type="date"
+                        value={formData.publicationDate}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            publicationDate: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                      <input
+                        type="time"
+                        value={formData.publicationTime}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            publicationTime: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       {t("project.deadline.start")}
                     </label>
-                    <input
-                      type="date"
-                      value={formData.startDate}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          startDate: e.target.value,
-                        }))
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      required
-                    />
+                    <div className="flex space-x-2">
+                      <input
+                        type="date"
+                        value={formData.startDate}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            startDate: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      /><input
+                        type="time"
+                        value={formData.startTime}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            startTime: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       {t("project.deadline.end")}
                     </label>
-                    <input
-                      type="date"
-                      value={formData.finishDate}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          finishDate: e.target.value,
-                        }))
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      required
-                    />
+                    <div className="flex space-x-2">
+                      <input
+                        type="date"
+                        value={formData.finishDate}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            finishDate: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                      <input
+                        type="time"
+                        value={formData.finishTime}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            finishTime: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

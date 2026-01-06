@@ -22,6 +22,7 @@ const ProjectDetails: React.FC = () => {
     questionType: 'Technical'
   });
   const [isUploading, setIsUploading] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   useEffect(() => {
     if (id) {
@@ -73,6 +74,7 @@ const ProjectDetails: React.FC = () => {
     try {
       await projectService.deleteFile(fileId);
       setFiles(files.filter(f => f.id !== fileId));
+      setDeleteConfirm(null);
     } catch (error) {
       console.error('Error deleting file:', error);
     }
@@ -334,7 +336,7 @@ const ProjectDetails: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    {project?.professionals.length > 0 && (
+                    {project.professionals.length > 0 && (
                       <>
                         <label className="text-sm font-medium text-gray-500">{t('project.officer.professional')}</label>
                         <ul className="text-gray-900 list-disc list-inside">
@@ -346,11 +348,11 @@ const ProjectDetails: React.FC = () => {
                     )}
                   </div>
                   <div>
-                    {project?.specialists.length > 0 && (
+                    {project.specialist.length > 0 && (
                       <>
                         <label className="text-sm font-medium text-gray-500">{t('project.officer.specialist')}</label>
                         <ul className="text-gray-900 list-disc list-inside">
-                          {project.specialists.map((spec, index) => (
+                          {project.specialist.map((spec, index) => (
                             <li key={index}>{spec}</li>
                           ))}
                         </ul>
@@ -487,7 +489,7 @@ const ProjectDetails: React.FC = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <button
-                            onClick={() => handleDeleteFile(file.id)}
+                            onClick={() => setDeleteConfirm(file.id)}
                             className="text-red-600 hover:text-red-900"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -497,8 +499,34 @@ const ProjectDetails: React.FC = () => {
                     ))}
                   </tbody>
                 </table>
+                  {/* Delete Confirmation Modal */}
+                  {deleteConfirm && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                      <div className="bg-white rounded-lg p-6 max-w-md w-full">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('dashboard.projects.delete.title')}</h3>
+                        <p className="text-gray-600 mb-6">
+                          {t('project.setting.user.delete.confirmation')}
+                        </p>
+                        <div className="flex justify-end space-x-3">
+                          <button
+                            onClick={() => setDeleteConfirm(null)}
+                            className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                          >
+                            {t('common.cancel')}
+                          </button>
+                          <button
+                            onClick={() => handleDeleteFile(deleteConfirm)}
+                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                          >
+                            {t('projects.delete')}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
               </div>
             )}
+
           </div>
         )}
 

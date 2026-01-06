@@ -103,7 +103,7 @@ useEffect(() => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-colors" title="Ir al inicio">
-                <img src={logo} alt="NLH Logo" className="h-14 w-14 ml-2 rounded-lg border-2 border-blue-400" />
+                <img src={logo} alt="NLH Logo" className="h-14 w-14 ml-2" />
               </a>
             </div>
 

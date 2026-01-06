@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
       <div className="w-64 bg-white shadow-lg">
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center">
-            <img src={logo} alt="NLH Logo" className="h-14 w-14 ml-2 rounded-lg border-2 border-blue-400" />
+            <img src={logo} alt="NLH Logo" className="h-14 w-14 ml-2" />
             <span className="ml-3 text-2xl font-bold text-gray-900">Nosotros Lo Hacemos</span>            
           </div>
         </div>

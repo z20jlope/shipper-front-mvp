@@ -30,7 +30,7 @@ const translations = {
     'landing.contact.submit': 'Send Message',
     'landing.contact.phone': 'Phone',
     'landing.contact.phone.number': '+56 9 8866-9996',
-    'landing.contact.email.address': 'contact@nlh.com',
+    'landing.contact.email.address': 'contact@nlh.cl',
     'landing.contact.whatsapp': 'WhatsApp',
     'landing.contact.whatsapp.number': 'Number: +56 9 8866-9996',
     
@@ -279,6 +279,7 @@ const translations = {
     'project.setting.user.table.role': 'Role',
     'project.setting.user.table.username': 'Company',
     'project.setting.user.table.actions': 'Actions',
+    'project.setting.user.delete.confirmation': 'Are you sure you want to delete this user? This action cannot be undone.',
 
     // Setting Project Template
     'project.setting.template.title': 'Project Templates',
@@ -330,7 +331,7 @@ const translations = {
     'landing.contact.submit': 'Enviar Mensaje',
     'landing.contact.phone': 'Teléfono',
     'landing.contact.phone.number': '+56 9 8866-9996',
-    'landing.contact.email.address': 'contacto@nlh.com',
+    'landing.contact.email.address': 'contacto@nlh.cl',
     'landing.contact.whatsapp': 'WhatsApp',
     'landing.contact.whatsapp.number': 'Número: +56 9 8866-9996',
     'landing.contact.whatsapp.link': 'https://wa.me/+56988669996?text=',
@@ -455,12 +456,12 @@ const translations = {
     'project.officer.contact': 'Contacto',
 
     // Project Customer Linked Section
-    'project.customer.title': 'Clientes Asociados',
-    'project.customer.search.title': 'Buscar Clientes Registrados',
+    'project.customer.title': 'Usuarios Asociados',
+    'project.customer.search.title': 'Buscar Usuarios Registrados',
     'project.customer.search.filter': 'Filtar por nombre...',
-    'project.customer.linked.title': 'Clientes Vinculados',
-    'project.customer.no.linked': 'No hay clientes associados al proyecto.',
-
+    'project.customer.linked.title': 'Usuarios Vinculados',
+    'project.customer.no.linked': 'No hay usuarios asociados al proyecto.',
+    
     // Project Addionally Section
     'project.addition.title': 'Información Adicional',
     'project.addition.title.placeholder': 'Descripción Adicional del Proyecto',
@@ -587,6 +588,7 @@ const translations = {
     'project.setting.user.table.role': 'Rol',
     'project.setting.user.table.username': 'Nombre de Empresa',
     'project.setting.user.table.actions': 'Acciones',
+    'project.setting.user.delete.confirmation': 'Esta seguro que desea eliminar este usuario? Esta acción no puede ser deshecha',
 
     // Setting Project Template
     'project.setting.template.title': 'Plantillas de proyectos',
