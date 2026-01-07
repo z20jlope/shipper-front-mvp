@@ -237,7 +237,6 @@ const ProjectDetails: React.FC = () => {
       {/* Tab Navigation */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {project.type}
           <nav className="flex space-x-8">
             {selectTabs(project.type).filter(tab => tab.visible).map((tab) => (
               <button
