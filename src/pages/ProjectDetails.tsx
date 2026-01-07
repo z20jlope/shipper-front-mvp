@@ -147,6 +147,18 @@ const ProjectDetails: React.FC = () => {
     { id: 'downloads', label: t('tab.download'), visible: true },
   ];
 
+  const tabsControl = [
+    { id: 'general', label: t('tab.general'), visible: true },
+    { id: 'deadline', label: t('tab.deadline'), visible: true },
+    { id: 'files', label: t('tab.files'), visible: true },
+    { id: 'qa', label: t('tab.qa'), visible: false },
+    { id: 'downloads', label: t('tab.download'), visible: false },
+  ];
+
+  const selectTabs = (projectType: String) => {
+    return projectType === 'Control de Obras' ? tabsControl : tabs;
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -225,8 +237,9 @@ const ProjectDetails: React.FC = () => {
       {/* Tab Navigation */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {project.type}
           <nav className="flex space-x-8">
-            {tabs.filter(tab => tab.visible).map((tab) => (
+            {selectTabs(project.type).filter(tab => tab.visible).map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
@@ -348,11 +361,11 @@ const ProjectDetails: React.FC = () => {
                     )}
                   </div>
                   <div>
-                    {project.specialist.length > 0 && (
+                    {project.specialists.length > 0 && (
                       <>
                         <label className="text-sm font-medium text-gray-500">{t('project.officer.specialist')}</label>
                         <ul className="text-gray-900 list-disc list-inside">
-                          {project.specialist.map((spec, index) => (
+                          {project.specialists.map((spec, index) => (
                             <li key={index}>{spec}</li>
                           ))}
                         </ul>
@@ -492,7 +505,7 @@ const ProjectDetails: React.FC = () => {
                             onClick={() => setDeleteConfirm(file.id)}
                             className="text-red-600 hover:text-red-900"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <Trash2 className="h-4 w-4" /> here2
                           </button>
                         </td>
                       </tr>

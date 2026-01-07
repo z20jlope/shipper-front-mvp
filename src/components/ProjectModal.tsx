@@ -1248,7 +1248,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                                   className="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 rounded transition-colors"
                                   title="Delete file"
                                 >
-                                  <Trash2 className="h-4 w-4" />
+                                  <Trash2 className="h-5 w-5" />here
                                 </button>
                               )}
                             </td>
