@@ -504,7 +504,7 @@ const ProjectDetails: React.FC = () => {
                             onClick={() => setDeleteConfirm(file.id)}
                             className="text-red-600 hover:text-red-900"
                           >
-                            <Trash2 className="h-4 w-4" /> here2
+                            <Trash2 className="h-4 w-4" />
                           </button>
                         </td>
                       </tr>

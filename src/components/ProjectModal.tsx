@@ -49,9 +49,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
     startTime: "",
     finishDate: "",
     finishTime: "",
-    offersLimit: 10,
-    asksLimit: 50,
-    responseLimit: 30,
+    offersLimit: "",
+    offersLimitTime: "",
+    asksLimit: "",
+    asksLimitTime: "",
+    responseLimit: "",
+    responseLimitTime: "",
     status: "pending" as const,
     userId: user?.id || "",
     licenseId: "",
@@ -79,9 +82,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
           .split("T")[0],
         startDate: new Date(project.startDate).toISOString().split("T")[0],
         finishDate: new Date(project.finishDate).toISOString().split("T")[0],
-        offersLimit: project.offersLimit,
-        asksLimit: project.asksLimit,
-        responseLimit: project.responseLimit,
+        offersLimit: new Date(project.offersLimit).toISOString().split("T")[0],
+        asksLimit: new Date(project.asksLimit).toISOString().split("T")[0],
+        responseLimit: new Date(project.responseLimit).toISOString().split("T")[0],
         status: project.status,
         userId: project.userId,
         licenseId: project.licenseId,
@@ -112,9 +115,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
         startTime: "",
         finishDate: "",
         finishTime: "",
-        offersLimit: 10,
-        asksLimit: 50,
-        responseLimit: 30,
+        offersLimit: "",
+        offersLimitTime: "",
+        asksLimit: "",
+        asksLimitTime: "",
+        responseLimit: "",
+        responseLimitTime: "",
         status: "pending",
         userId: user?.id || "",
         licenseId: "",
@@ -993,6 +999,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                             publicationTime: e.target.value,
                           }))
                         }
+                        step="1"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
@@ -1023,6 +1030,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                             startTime: e.target.value,
                           }))
                         }
+                        step="1"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
@@ -1054,6 +1062,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                             finishTime: e.target.value,
                           }))
                         }
+                        step="1"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
@@ -1072,55 +1081,97 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       {t("project.deadline.offers")}
                     </label>
-                    <input
-                      type="number"
-                      value={formData.offersLimit}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          offersLimit: parseInt(e.target.value),
-                        }))
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      min="1"
-                      required
-                    />
+                    <div className="flex space-x-2">
+                      <input
+                        type="date"
+                        value={formData.offersLimit}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            offersLimit: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                      <input
+                        type="time"
+                        value={formData.offersLimitTime}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            offersLimitTime: e.target.value,
+                          }))
+                        }
+                        step="1"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       {t("project.deadline.ask")}
                     </label>
-                    <input
-                      type="number"
-                      value={formData.asksLimit}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          asksLimit: parseInt(e.target.value),
-                        }))
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      min="1"
-                      required
-                    />
+                    <div className="flex space-x-2">
+                      <input
+                        type="date"
+                        value={formData.asksLimit}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            asksLimit: e.target.value,
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                      <input
+                        type="time"
+                        value={formData.asksLimitTime}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            asksLimitTime: parseInt(e.target.value),
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        step="1"
+                        required
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       {t("project.deadline.response")}
                     </label>
-                    <input
-                      type="number"
-                      value={formData.responseLimit}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          responseLimit: parseInt(e.target.value),
-                        }))
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      min="1"
-                      required
-                    />
+                    <div className="flex space-x-2">
+                      <input
+                        type="date"
+                        value={formData.responseLimit}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            responseLimit: parseInt(e.target.value),
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                      <input
+                        type="time"
+                        value={formData.responseLimitTime}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            responseLimitTime: parseInt(e.target.value),
+                          }))
+                        }
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        step="1"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1248,7 +1299,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                                   className="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 rounded transition-colors"
                                   title="Delete file"
                                 >
-                                  <Trash2 className="h-5 w-5" />here
+                                  <Trash2 className="h-5 w-5" />
                                 </button>
                               )}
                             </td>

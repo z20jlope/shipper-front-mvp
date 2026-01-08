@@ -70,9 +70,9 @@ export interface ProjectConfig {
   publicationDate: Date;
   startDate: Date;
   finishDate: Date;
-  offersLimit: number;
-  asksLimit: number;
-  responseLimit: number;
+  offersLimit: Date;
+  asksLimit: Date;
+  responseLimit: Date;
 }
 
 /** Entity of project files could be attachment */
